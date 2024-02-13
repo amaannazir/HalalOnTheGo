@@ -1,3 +1,40 @@
 ﻿@page "/"
+@page "/{categoryurl}"
+@inject ICategoryService CategoryService
 
-<ProductList/>
+@if (category != null)
+{
+    <h1>Here are our current selections of @category.Name:</h1>
+    <ProductList CategoryId="@category.Id"></ProductList>
+}
+else
+{
+    <h1>Welcome to HalalOnTheGo!</h1>
+    <h2>THE One stop shop for your Halal Butchered Meats And Chickens</h2>
+    <p>We hope you find what you need.</p>
+    <ProductList/>
+}
+
+
+
+@code
+{
+
+    [Parameter]
+    public string CategoryUrl { get; set; }
+
+    private Category category = null;
+
+    protected override void OnParametersSet()
+    {
+        if (CategoryUrl != null)
+        {
+            category = CategoryService.Categories.FirstOrDefault(c => c.Url.ToLower().Equals(CategoryUrl.ToLower()));
+        }
+        else
+        {
+            category = null;
+        }
+    }
+
+}
