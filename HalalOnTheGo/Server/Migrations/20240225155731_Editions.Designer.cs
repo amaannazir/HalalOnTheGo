@@ -4,6 +4,7 @@ using HalalOnTheGo.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HalalOnTheGo.Server.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20240225155731_Editions")]
+    partial class Editions
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,103 +38,6 @@ namespace HalalOnTheGo.Server.Migrations
                     b.HasIndex("ProductsId");
 
                     b.ToTable("EditionProduct");
-
-                    b.HasData(
-                        new
-                        {
-                            EditionsId = 1,
-                            ProductsId = 2
-                        },
-                        new
-                        {
-                            EditionsId = 2,
-                            ProductsId = 2
-                        },
-                        new
-                        {
-                            EditionsId = 3,
-                            ProductsId = 2
-                        },
-                        new
-                        {
-                            EditionsId = 4,
-                            ProductsId = 5
-                        },
-                        new
-                        {
-                            EditionsId = 5,
-                            ProductsId = 5
-                        },
-                        new
-                        {
-                            EditionsId = 6,
-                            ProductsId = 5
-                        },
-                        new
-                        {
-                            EditionsId = 2,
-                            ProductsId = 9
-                        },
-                        new
-                        {
-                            EditionsId = 7,
-                            ProductsId = 9
-                        },
-                        new
-                        {
-                            EditionsId = 7,
-                            ProductsId = 10
-                        },
-                        new
-                        {
-                            EditionsId = 1,
-                            ProductsId = 10
-                        },
-                        new
-                        {
-                            EditionsId = 2,
-                            ProductsId = 10
-                        },
-                        new
-                        {
-                            EditionsId = 7,
-                            ProductsId = 13
-                        },
-                        new
-                        {
-                            EditionsId = 2,
-                            ProductsId = 13
-                        },
-                        new
-                        {
-                            EditionsId = 2,
-                            ProductsId = 15
-                        },
-                        new
-                        {
-                            EditionsId = 1,
-                            ProductsId = 16
-                        },
-                        new
-                        {
-                            EditionsId = 3,
-                            ProductsId = 16
-                        },
-                        new
-                        {
-                            EditionsId = 1,
-                            ProductsId = 18
-                        },
-                        new
-                        {
-                            EditionsId = 2,
-                            ProductsId = 19
-                        },
-                        new
-                        {
-                            EditionsId = 2,
-                            ProductsId = 1
-                        });
                 });
 
             modelBuilder.Entity("HalalOnTheGo.Shared.Category", b =>
@@ -197,43 +103,6 @@ namespace HalalOnTheGo.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Editions");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "1KG"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "2KG"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "5KG"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "5(FIVE) Pieces"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "10(TEN) Pieces"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "15(FIFTEEN) Pieces"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "500G"
-                        });
                 });
 
             modelBuilder.Entity("HalalOnTheGo.Shared.Product", b =>
