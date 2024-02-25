@@ -1,24 +1,25 @@
-﻿using HalalOnTheGo.Shared;
+﻿using HalalOnTheGo.Server.Data;
+using HalalOnTheGo.Shared;
+using Microsoft.EntityFrameworkCore;
 
 namespace HalalOnTheGo.Server.Services.CategoryService
 {
     public class CategoryService : ICategoryService
     {
-        public List<Category> Categories { get; set; } = new List<Category>
-            {
-                new Category{Id = 1, Name ="Chicken", Url ="chicken", Icon ="food"},
-                new Category{Id = 2, Name ="Lamb", Url="meat", Icon ="food"},
-                new Category{Id = 3, Name ="Mutton", Url="mutton", Icon ="food"}
-            };
+        private readonly DataContext _context;
 
-        public async Task<List<Category>> GetCategories()
+        public CategoryService(DataContext context)
         {
-            return Categories;
+            _context = context; //set the context 
+        }
+        public async Task<List<Category>> GetCategories() //LOADING THE CATEGORIES FROM THE DATABASE! 
+        {
+            return await _context.Categories.ToListAsync();
         }
 
-        public async Task<Category> GetCategoryByUrl(string categoryUrl)
+        public async Task<Category> GetCategoryByUrl(string categoryUrl) //Loading from database using Async!
         {
-           return Categories.FirstOrDefault(c => c.Url.ToLower().Equals(categoryUrl.ToLower()));
+           return await _context.Categories.FirstOrDefaultAsync(c => c.Url.ToLower().Equals(categoryUrl.ToLower()));
         }
     }
 }
