@@ -207,7 +207,7 @@ namespace HalalOnTheGo.Server.Data
                        ProductId = 3,
                        EditionId = 7,
                        Price = 14.30m
-
+                        
                    },
                     new ProductVariant
                     {

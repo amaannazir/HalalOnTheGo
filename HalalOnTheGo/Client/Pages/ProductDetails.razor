@@ -1,5 +1,7 @@
 ﻿@page "/product/{id:int}"
 @inject IProductService ProductService
+@inject ILocalStorageService LocalStorage
+@inject IToastService ToastService
 
 <div class = "media"> 
     <div class = "media-img-big-wrapper mr-2">
@@ -29,7 +31,7 @@
                 £@GetSelectedVariant().Price
         </h4>
         }
-        <button class = "btn btn-primary"><i class = "oi oi-cart"></i>&nbsp;&nbsp;&nbsp;Add To Cart</button>
+        <button class = "btn btn-primary" @onclick ="AddToCart"><i class = "oi oi-cart"></i>&nbsp;&nbsp;&nbsp;Add To Cart</button>
     </div>
 
 </div>
@@ -42,6 +44,8 @@
     [Parameter]
     public int Id { get; set; }
 
+    //OnInitializedAsync() is an override method that gets called when the component is initialized asynchronously. It fetches product information from the ProductService based on the provided Id, and upon a successful retrieval, it sets the currentEditionId to the EditionId of the first variant in the product's list of variants, if any exist.
+
     protected override async Task OnInitializedAsync()
     {
         product = await ProductService.GetProduct(Id);
@@ -51,10 +55,28 @@
         }
     }
 
+
+    // GetSelectedVariant() retrieves the product variant associated with the currently selected edition by querying the list of variants for a match based on the EditionId. If found, the matching variant is returned; otherwise, null is returned.
+
     private ProductVariant GetSelectedVariant()
     {
         var variant = product.Variants.FirstOrDefault(v => v.EditionId == currentEditionId);
         return variant;
     }
 
-}
+    private async Task AddToCart()
+    // Retrieve the 'cart' from local storage asynchronously using the LocalStorage service. If the 'cart' is not found (null), initialize it as a new List<ProductVariant>.
+    {
+        var cart = await LocalStorage.GetItemAsync<List<ProductVariant>>("cart");
+        if (cart == null)
+        {
+            cart = new List<ProductVariant>();
+        }
+
+        // Add the currently selected product variant (obtained using GetSelectedVariant()) to the 'cart'. After updating the 'cart', persist the changes asynchronously by storing it         in local storage.
+        cart.Add(GetSelectedVariant());
+        await LocalStorage.SetItemAsync("cart", cart);
+        ToastService.ShowSuccess("Added to cart: " + product.Title);
+    }
+
+    }
