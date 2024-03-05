@@ -76,7 +76,7 @@
         // Add the currently selected product variant (obtained using GetSelectedVariant()) to the 'cart'. After updating the 'cart', persist the changes asynchronously by storing it         in local storage.
         cart.Add(GetSelectedVariant());
         await LocalStorage.SetItemAsync("cart", cart);
-        ToastService.ShowSuccess("Added to cart: " + product.Title);
+        ToastService.ShowSuccess("Added to cart: " + product.Title); //POP UP NOTIFICATION WHEN ADDING A PRODUCT TO CART!
     }
 
-    }
+    } 
