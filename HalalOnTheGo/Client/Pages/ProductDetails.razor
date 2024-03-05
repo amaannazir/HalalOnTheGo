@@ -1,5 +1,6 @@
 ﻿@page "/product/{id:int}"
 @inject IProductService ProductService
+@inject ICartService CartService
 @inject ILocalStorageService LocalStorage
 @inject IToastService ToastService
 
@@ -65,18 +66,21 @@
     }
 
     private async Task AddToCart()
-    // Retrieve the 'cart' from local storage asynchronously using the LocalStorage service. If the 'cart' is not found (null), initialize it as a new List<ProductVariant>.
     {
-        var cart = await LocalStorage.GetItemAsync<List<ProductVariant>>("cart");
-        if (cart == null)
-        {
-            cart = new List<ProductVariant>();
-        }
+        // Retrieve the 'cart' from local storage asynchronously using the LocalStorage service. If the 'cart' is not found (null), initialize it as a new List<ProductVariant>.
 
-        // Add the currently selected product variant (obtained using GetSelectedVariant()) to the 'cart'. After updating the 'cart', persist the changes asynchronously by storing it         in local storage.
-        cart.Add(GetSelectedVariant());
-        await LocalStorage.SetItemAsync("cart", cart);
-        ToastService.ShowSuccess("Added to cart: " + product.Title); //POP UP NOTIFICATION WHEN ADDING A PRODUCT TO CART!
+        //  var cart = await LocalStorage.GetItemAsync<List<ProductVariant>>("cart");
+        //  if (cart == null)
+        //   {
+        //     cart = new List<ProductVariant>();
+        //  }
+
+        // Add the currently selected product variant (obtained using GetSelectedVariant()) to the 'cart'. After updating the 'cart', persist the changes asynchronously by storing it in local storage.
+        //cart.Add(GetSelectedVariant());
+        // await LocalStorage.SetItemAsync("cart", cart);
+        // ToastService.ShowSuccess("Added to cart: " + product.Title); //POP UP NOTIFICATION WHEN ADDING A PRODUCT TO CART!
+
+        await CartService.AddToCart(GetSelectedVariant());
     }
 
     } 
