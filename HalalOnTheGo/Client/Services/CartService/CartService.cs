@@ -45,5 +45,41 @@ namespace HalalOnTheGo.Client.Services.CartService
 
             OnChange.Invoke(); // Invokes the OnChange event to notify observers about the cart change.
         }
+
+        public async Task <List<CartItem>> GetCartItems() //Get all cart items from the local storage and loop through them using a loop. Then as that is happening add it to the CartItem LIST.
+        {
+            var result = new List<CartItem>();
+            var cart = await _localStorage.GetItemAsync<List<ProductVariant>>("cart");
+            if (cart == null)
+            {
+                return result;
+            }
+
+            foreach (var item in cart) // Iterates through each item in the 'cart', fetching corresponding product information and creating a new CartItem with relevant details.
+                                      
+            {
+                var product = await _productService.GetProduct(item.ProductId);
+                var cartItem = new CartItem
+                {
+                    ProductId = product.Id,
+                    ProductTitle = product.Title,
+                    Image = product.Image,
+                    EditionId = item.EditionId
+                };
+
+                // Finds the variant in the product's variants list that matches the EditionId of the current cart item. If a matching variant is found, updates the cart item with EditionName and Price.         
+                      
+                var variant = product.Variants.Find(v => v.EditionId == item.EditionId);
+                if (variant != null)
+                {
+                    cartItem.EditionName = variant.Edition?.Name;
+                    cartItem.Price = variant.Price;
+                }
+
+                result.Add(cartItem);  // Adds the cart item to the result list.
+            }
+
+            return result; //return the cartitem results!
+        }
     }
 }
