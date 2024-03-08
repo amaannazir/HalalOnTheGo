@@ -81,5 +81,20 @@ namespace HalalOnTheGo.Client.Services.CartService
 
             return result; //return the cartitem results!
         }
+            
+        public async Task DeleteItem(CartItem item)
+        {
+            var cart = await _localStorage.GetItemAsync<List<ProductVariant>>("cart");
+            if(cart == null)
+            {
+                return;
+            }
+
+            var cartItem = cart.Find(x => x.ProductId == item.ProductId && x.EditionId == item.EditionId);
+            cart.Remove(cartItem);
+
+            await _localStorage.SetItemAsync("cart", cart);
+            OnChange.Invoke();
+        }
     }
 }

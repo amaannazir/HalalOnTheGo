@@ -39,7 +39,7 @@
         ProductService.OnChange -= StateHasChanged; //DISPOSE OF THE EVENT AFTER CALLED. 
     }
 
-   private string GetPriceText(Product product)
+    private string GetPriceText(Product product)
     {
         var variants = product.Variants;
         if (variants.Count == 0)
@@ -48,10 +48,10 @@
         }
         else if (variants.Count == 1)
         {
-            return $"${variants[0].Price}";
+            return $"£{variants[0].Price}";
         }
         decimal minPrice = variants.Min(v => v.Price);
-        return $"Starting at ${minPrice}";
+        return $"Starting at £{minPrice}";
     }
 
 }
