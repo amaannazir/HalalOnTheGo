@@ -1,0 +1,28 @@
+﻿@page "/login"
+@inject ILocalStorageService LocalStorage
+@inject NavigationManager NavigationManager
+
+<h3>Login</h3>
+<p>Please login with your student email address below, which you previously signed up with. (This usually follows the "@@university.ac.uk" convenction)</p>
+<EditForm Model="user" OnSubmit="HandleLogin">
+    <div class="form-group">
+        <label for="email">Email</label>
+        <InputText id="email" @bind-Value="user.Email" class="form-control"></InputText>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <InputText id="password" @bind-Value="user.Password" type="password" class="form-control"></InputText>
+    </div>
+
+    <button type ="submit" class="btn btn-primary">Login</button>
+</EditForm>
+
+@code {
+    private User user = new User(); //Model initialized for EditForm! 
+
+    private async void HandleLogin()
+    {
+        await LocalStorage.SetItemAsync<string>("email", user.Email);
+        NavigationManager.NavigateTo("");
+    }
+}
