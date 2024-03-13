@@ -1,6 +1,7 @@
 ﻿@page "/login"
 @inject ILocalStorageService LocalStorage
 @inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthStateProvider
 
 <h3>Login</h3>
 <p>Please login with your student email address below, which you previously signed up with. (This usually follows the "@@university.ac.uk" convenction)</p>
@@ -23,6 +24,7 @@
     private async void HandleLogin()
     {
         await LocalStorage.SetItemAsync<string>("email", user.Email);
+        await AuthStateProvider.GetAuthenticationStateAsync(); //This method will ghet the current user authentication state, authorized or NOT authorized. 
         NavigationManager.NavigateTo("");
     }
 }

@@ -2,6 +2,7 @@
 @page "/{categoryurl}"
 @inject ICategoryService CategoryService;
 @inject IProductService ProductService
+@inject ISyncLocalStorageService LocalStorage
 
 @if (category != null)
 {
@@ -9,11 +10,22 @@
     <ProductList />
 }
 else
-{
-    <h1>Welcome to HalalOnTheGo!</h1>
-    <h2>THE One stop shop for your Halal Butchered Meats</h2>
+{ <AuthorizeView>
+    <NotAuthorized>
+        <h1>Welcome to HalalOnTheGo!</h1>
+        <p>To explore our selection of premium halal butchered meat offerings direct to STUDENTS, kindly sign in using your university email to savor the full experience and browse at your convenience.</p>
+
+    </NotAuthorized>
+    <Authorized>
+        <h1>Welcome back to HalalOnTheGo, @LocalStorage.GetItemAsString("email")!</h1>
+          <h2>The one stop halal butcher provider for our students</h2>
     <p>We hope you find what you need.</p> 
-    <ProductList/>
+        <ProductList/>
+    </Authorized>
+</AuthorizeView>
+    
+  
+    
 }
 @code
 {
