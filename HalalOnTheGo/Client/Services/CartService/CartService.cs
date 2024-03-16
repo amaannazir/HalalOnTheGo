@@ -27,20 +27,32 @@ namespace HalalOnTheGo.Client.Services.CartService
         }
 
         // Asynchronously adds a ProductVariant to the 'cart'. Retrieves the current 'cart' from local storage and initializes it as a new list if not found.
-        public async Task AddToCart(ProductVariant productVariant)
+        public async Task AddToCart(CartItem item)
         {
             // Adds the provided 'productVariant' to the 'cart' and updates the local storage accordingly. Fetches the corresponding product information for the added variant. Displays a success toast notification with the product title.
             
             
-            var cart = await _localStorage.GetItemAsync<List<ProductVariant>>("cart");
+            var cart = await _localStorage.GetItemAsync<List<CartItem>>("cart");
             if (cart == null)
             {
-                cart = new List<ProductVariant>();
+                cart = new List<CartItem>();
             }
-            cart.Add(productVariant); //SAME IMPLEMENTATION I DID IN PRODUCT DETAILS PAGE
-            await _localStorage.SetItemAsync("cart", cart);
 
-            var product = await _productService.GetProduct(productVariant.ProductId);
+            var sameItem = cart //Check if same item exists
+            .Find(x => x.ProductId == item.ProductId && x.EditionId == item.EditionId);
+            if (sameItem == null)
+            {
+               cart.Add(item); //If item does not exist in cart, add it to cart.
+            }
+            else
+            {
+                sameItem.Quantity += item.Quantity; //Increment the cart number even if product is the same / multiple of same item.
+            }
+
+             //SAME IMPLEMENTATION I DID IN PRODUCT DETAILS PAGE
+            await _localStorage.SetItemAsync("cart", cart); //Store cart in local strage
+
+            var product = await _productService.GetProduct(item.ProductId);
             _toastService.ShowSuccess("Added to cart: " + product.Title);
 
             OnChange.Invoke(); // Invokes the OnChange event to notify observers about the cart change.
@@ -48,43 +60,17 @@ namespace HalalOnTheGo.Client.Services.CartService
 
         public async Task <List<CartItem>> GetCartItems() //Get all cart items from the local storage and loop through them using a loop. Then as that is happening add it to the CartItem LIST.
         {
-            var result = new List<CartItem>();
-            var cart = await _localStorage.GetItemAsync<List<ProductVariant>>("cart");
+            var cart = await _localStorage.GetItemAsync<List<CartItem>>("cart");
             if (cart == null)
             {
-                return result;
+                return new List<CartItem>(); //Return an empty list if cart is empty
             }
-
-            foreach (var item in cart) // Iterates through each item in the 'cart', fetching corresponding product information and creating a new CartItem with relevant details.
-                                      
-            {
-                var product = await _productService.GetProduct(item.ProductId);
-                var cartItem = new CartItem
-                {
-                    ProductId = product.Id,
-                    ProductTitle = product.Title,
-                    Image = product.Image,
-                    EditionId = item.EditionId
-                };
-
-                // Finds the variant in the product's variants list that matches the EditionId of the current cart item. If a matching variant is found, updates the cart item with EditionName and Price.         
-                      
-                var variant = product.Variants.Find(v => v.EditionId == item.EditionId);
-                if (variant != null)
-                {
-                    cartItem.EditionName = variant.Edition?.Name;
-                    cartItem.Price = variant.Price;
-                }
-
-                result.Add(cartItem);  // Adds the cart item to the result list.
-            }
-
-            return result; //return the cartitem results!
+            return cart; //return the cart with any items
         }
             
         public async Task DeleteItem(CartItem item)
         {
-            var cart = await _localStorage.GetItemAsync<List<ProductVariant>>("cart");
+            var cart = await _localStorage.GetItemAsync<List<CartItem>>("cart");
             if(cart == null)
             {
                 return;
@@ -94,6 +80,12 @@ namespace HalalOnTheGo.Client.Services.CartService
             cart.Remove(cartItem);
 
             await _localStorage.SetItemAsync("cart", cart);
+            OnChange.Invoke();
+        }
+
+        public async Task EmptyCart() //Method to empty cart once an order has been placed! 
+        {
+            await _localStorage.RemoveItemAsync("cart");
             OnChange.Invoke();
         }
     }

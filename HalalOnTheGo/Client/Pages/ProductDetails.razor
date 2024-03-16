@@ -26,12 +26,20 @@
         {
             @if (GetSelectedVariant().OriginalPrice > GetSelectedVariant().Price)
             {
+                <br />
                 <h6 class = "text-muted original-price ">£@GetSelectedVariant().OriginalPrice</h6>
             }
             <h4 class = "price">
+                <br />
                 £@GetSelectedVariant().Price
         </h4>
         }
+        <EditForm Model="cartItem">
+            <div class="form-group">
+                <InputNumber id="quantity" @bind-Value="cartItem.Quantity" class="form-control" style="width: 70px;"></InputNumber>
+                <br />
+            </div>
+        </EditForm>
         <button class = "btn btn-primary" @onclick ="AddToCart"><i class = "oi oi-cart"></i>&nbsp;&nbsp;&nbsp;Add To Cart</button>
     </div>
 
@@ -41,6 +49,8 @@
     private Product product = new Product();
 
     private int currentEditionId = 1;
+
+    private CartItem cartItem = new CartItem { Quantity = 1 };
 
     [Parameter]
     public int Id { get; set; }
@@ -66,21 +76,17 @@
     }
 
     private async Task AddToCart()
-    { 
-        // Retrieve the 'cart' from local storage asynchronously using the LocalStorage service. If the 'cart' is not found (null), initialize it as a new List<ProductVariant>.
+    {
+        var productVariant = GetSelectedVariant();
 
-        //  var cart = await LocalStorage.GetItemAsync<List<ProductVariant>>("cart");
-        //  if (cart == null)
-        //   {
-        //     cart = new List<ProductVariant>();
-        //  }
+        cartItem.EditionId = productVariant.EditionId;
+        cartItem.EditionName = productVariant.Edition.Name;
+        cartItem.Image = product.Image;
+        cartItem.Price = productVariant.Price;
+        cartItem.ProductId = productVariant.ProductId;
+        cartItem.ProductTitle = product.Title;
 
-        // Add the currently selected product variant (obtained using GetSelectedVariant()) to the 'cart'. After updating the 'cart', persist the changes asynchronously by storing it in local storage.
-        //cart.Add(GetSelectedVariant());
-        // await LocalStorage.SetItemAsync("cart", cart);
-        // ToastService.ShowSuccess("Added to cart: " + product.Title); //POP UP NOTIFICATION WHEN ADDING A PRODUCT TO CART!
-
-        await CartService.AddToCart(GetSelectedVariant());
+        await CartService.AddToCart(cartItem);
     }
 
     } 
