@@ -33,5 +33,11 @@ namespace HalalOnTheGo.Server.Services.ProductService
             return await _context.Products.Include(p => p.Variants).Where(p => p.CategoryId == category.Id).ToListAsync(); //Load products from database using entity framework! 
         }
 
+        public async Task<List<Product>> SearchProducts(string searchText)
+        {
+            return await _context.Products
+                .Where(p => p.Title.Contains(searchText) || p.Description.Contains(searchText))
+                .ToListAsync();
+        }
     }
 }

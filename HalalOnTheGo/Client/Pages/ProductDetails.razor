@@ -57,7 +57,7 @@
 
     //OnInitializedAsync() is an override method that gets called when the component is initialized asynchronously. It fetches product information from the ProductService based on the provided Id, and upon a successful retrieval, it sets the currentEditionId to the EditionId of the first variant in the product's list of variants, if any exist.
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
         product = await ProductService.GetProduct(Id);
         if(product.Variants.Count > 0)
