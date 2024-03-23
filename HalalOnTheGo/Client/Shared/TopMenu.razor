@@ -21,11 +21,16 @@
     </NotFoundTemplate>
 </BlazoredTypeahead>
 
-<a href="cart" class="btn btn-info">
+<AuthorizeView>
+    <Authorized>
+        <a href="cart" class="btn btn-info">
   <i class="oi oi-cart"></i>
    Cart
   <span class="badge badge-pill badge-light">@GetProductCount()</span>
 </a>
+    </Authorized>
+</AuthorizeView>
+
  
 
 @code 

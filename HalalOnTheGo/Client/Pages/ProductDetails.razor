@@ -40,7 +40,15 @@
                 <br />
             </div>
         </EditForm>
-        <button class = "btn btn-primary" @onclick ="AddToCart"><i class = "oi oi-cart"></i>&nbsp;&nbsp;&nbsp;Add To Cart</button>
+        <AuthorizeView>
+            <Authorized>
+                <button class = "btn btn-primary" @onclick ="AddToCart"><i class = "oi oi-cart"></i>&nbsp;&nbsp;&nbsp;Add To Cart</button>
+            </Authorized>
+            <NotAuthorized>
+               <p>To purchase this product, please sign in using your university credentials. (This usually follows the @@university.ac.uk format)</p> 
+            </NotAuthorized>
+        </AuthorizeView>
+        
     </div>
 
 </div>

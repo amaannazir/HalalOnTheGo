@@ -72,11 +72,16 @@ a, .btn-link {
 }
 
 .price {
-    color: green
+    color: green;
 }
 
 .cart {
-    color:white
+    color: white;
+}
+.italic-needs-signin{
+    text-align: center;
+    font-style: italic;
+    font-weight: bolder;
 }
 
 
