@@ -1,9 +1,11 @@
 ﻿@page "/cart"
 @inject ICartService CartService
+@inject NavigationManager NavigationManager
 
 @if (!orderPlaced) //If the order is not placed, display the shopping cart with all the meat items, prices, ability to change quantity and delete item and order button!
 {
     <h3>Shopping Cart</h3>
+
     @if(cartItems == null || cartItems.Count <= 0) //Display message to user if cart is empty
 {
     <span>Aw, your cart looks a bit lonely! How about we fill it with some fantastic finds? Time to get your dinner table ready! </span>
@@ -76,9 +78,10 @@ else //If order IS placed, display the products and total price to user. But rem
         cartItems = await CartService.GetCartItems();
     }
 
-    private async Task PlaceOrder() //Place order button, this method is called. Empties the cart as order has been placed.
+    private async Task PlaceOrder() //Place order button, this method is called. MAKES CALL TO STRIPE CHECKOUT SERVICES, Empties the cart as order has been placed. 
     {
-        orderPlaced = true;
+        string checkoutUrl = await CartService.Checkout(); //Calls checkout service method for stripe checkout
+        NavigationManager.NavigateTo(checkoutUrl); //Navigation manager takes user to STRIPE CHECKOUT FOR PAYMENT AND ORDER PLACING.
         await CartService.EmptyCart();
     }
 }

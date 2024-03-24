@@ -2,6 +2,7 @@
 using Blazored.Toast.Services;
 using HalalOnTheGo.Client.Services.ProductService;
 using HalalOnTheGo.Shared;
+using System.Net.Http.Json;
 
 namespace HalalOnTheGo.Client.Services.CartService
 {
@@ -11,6 +12,7 @@ namespace HalalOnTheGo.Client.Services.CartService
         private readonly ILocalStorageService _localStorage;
         private readonly IToastService _toastService;
         private readonly IProductService _productService;
+        private readonly HttpClient _http; //FOR STRIPE CHECKOUT, LINK TO STRIPE PAYMENTS
 
         public event Action OnChange;
 
@@ -19,11 +21,13 @@ namespace HalalOnTheGo.Client.Services.CartService
         // _localStorage: ILocalStorageService for managing local storage operations.
         // _toastService: IToastService for displaying toast notifications.
         // _productService: IProductService for fetching product-related information.
-        public CartService(ILocalStorageService localStorage, IToastService toastService, IProductService productService) 
+        //_http: http call for checkout and payments for user.
+        public CartService(ILocalStorageService localStorage, IToastService toastService, IProductService productService, HttpClient http) 
         {
             _localStorage = localStorage;
             _toastService = toastService;
             _productService = productService;
+            _http = http; //STRIPE CHECKOUT HTTP CALL
         }
 
         // Asynchronously adds a ProductVariant to the 'cart'. Retrieves the current 'cart' from local storage and initializes it as a new list if not found.
@@ -87,6 +91,13 @@ namespace HalalOnTheGo.Client.Services.CartService
         {
             await _localStorage.RemoveItemAsync("cart");
             OnChange.Invoke();
+        }
+
+        public async Task<string> Checkout() //Method for checkout - uses cart.razor
+        {
+            var result = await _http.PostAsJsonAsync("api/payment/checkout", await GetCartItems()); //API call to checkout payment service
+            var url = await result.Content.ReadAsStringAsync();
+            return url;
         }
     }
 }

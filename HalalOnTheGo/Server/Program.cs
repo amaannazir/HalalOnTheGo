@@ -1,5 +1,6 @@
 using HalalOnTheGo.Server.Data;
 using HalalOnTheGo.Server.Services.CategoryService;
+using HalalOnTheGo.Server.Services.PaymentService;
 using HalalOnTheGo.Server.Services.ProductService;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,11 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
 
 // Add services to the container.
-
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
