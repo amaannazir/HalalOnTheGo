@@ -96,13 +96,25 @@ a, .btn-link {
     width: 100%;
     z-index: 1000;
 }
+.OrderId {
+    text-align:left;
+    color:green;
+}
+.OrderCompleteH3 {
+    text-align:center;
+    text-decoration:solid;
+}
+.EmailSentOutPrompt {
+    text-align:center;
+    border:thick;
+}
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
 
     @media (max-width: 1023.98px) 
     {

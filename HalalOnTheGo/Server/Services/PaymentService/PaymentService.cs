@@ -43,7 +43,7 @@ namespace HalalOnTheGo.Server.Services.PaymentService
                
                 
                 Mode = "payment",
-                SuccessUrl = "https://localhost:7249/ordersuccess", //LOCAL MACHINE ONLY - NOT GO LIVE OR PRODUCTION KEY / URL!
+                SuccessUrl = "https://localhost:7249/deliverydetails", //LOCAL MACHINE ONLY - NOT GO LIVE OR PRODUCTION KEY / URL!
                 CancelUrl = "https://localhost:7249/cart",           //LOCAL MACHINE ONLY - NOT GO LIVE OR PRODUCTION KEY / URL!
             };
 

@@ -1,0 +1,99 @@
+﻿@inject NavigationManager NavigationManager
+
+@page "/deliverydetails"
+
+<h3>Delivery Options</h3> 
+
+
+<span><b>Congratulations on choosing the best halal meat for your plate! You're just one address entry away from diving into deliciousness! Let's complete this journey together, shall we?</b> </span>
+<br />
+
+<br />
+<h4><span class="OrderId" style="justify-content:center;"> Order #ID: 4242424243 </span> is in! Where shall we bring it?</h4>
+
+<br />
+
+<div class="form-container" style="justify-content:center">
+    <div class="form-group">
+        <label for="title">Title</label>
+       <br /> <select id="title" @bind="Title" >
+        <option value="title">Select Title</option>
+        <option value="title">Mr</option>
+        <option value="title">Mrs</option>
+        </select>
+        
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label for="firstName">Recipient First Name</label>
+     <br />   <input id="firstName" type="text" @bind="RecipientFirstName" />
+    </div>
+
+    <br /> 
+
+    <div class="form-group">
+        <label for="lastName">Recipient Last Name</label>
+   <br />     <input id="lastName" type="text" @bind="RecipientLastName" />
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label for="postcode">Postcode</label>
+     <br />   <input id="postcode" type="text" @bind="Postcode" />
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label for="addressLine1">First Line of Address</label>
+       <br /> 
+       <input id="addressLine1" type="text" @bind="AddressLine1" />
+    </div>
+
+    <br />
+
+    <div class="form-group">
+        <label for="houseNumber">House Number or Name</label>
+       <br /> <input id="houseNumber" type="text" @bind="HouseNumberOrName" />
+    </div>
+
+    <br />
+
+     <div class="form-group">
+        <label for="shuID">Sheffield University Student ID (EXAMPLE: C000****): </label>
+       <br /> 
+       <input id="shuID" type="text" @bind="ShuId" />
+    </div>
+    <br />
+
+     <div class="form-group">
+        <label for="EmailAddress">Email Address (For receiving of a full receipt) </label>
+       <br /> 
+       <input id="shuID" type="text" @bind="Email" />
+    </div>
+    <br />
+
+    <button class="btn btn-primary" @onclick="SubmitForm">Submit</button>
+</div>
+
+
+
+@code {
+    private string Title { get; set; }
+    private string RecipientFirstName { get; set; }
+    private string RecipientLastName { get; set; }
+    private string Postcode { get; set; }
+    private string AddressLine1 { get; set; }
+    private string HouseNumberOrName { get; set; }
+    private int ShuId { get; set; }
+    private string Email { get; set; }
+
+    private void SubmitForm()
+    {
+        NavigationManager.NavigateTo("/ordersuccess");
+       
+    }
+}
