@@ -108,6 +108,17 @@ a, .btn-link {
     text-align:center;
     border:thick;
 }
+.aboutusopening {
+    text-align: center;
+}
+.home-title {
+    text-align: center;
+    justify-content: center;
+    text-decoration: solid;
+    padding: 10px;
+    font-weight: bold;
+    font-size: xx-large;
+}
 
 #blazor-error-ui .dismiss {
     cursor: pointer;
