@@ -119,6 +119,22 @@ a, .btn-link {
     font-weight: bold;
     font-size: xx-large;
 }
+.about-grid-container {
+    display: grid;
+    justify-content: space-evenly;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+    padding: 10px;
+    grid-template-columns: 50% 50%;
+}
+.about-line {
+    border-right: solid;
+    padding-right: 3px;
+}
+.dotted-options-border {
+    border-block-style:dotted;
+    
+}
 
 #blazor-error-ui .dismiss {
     cursor: pointer;
