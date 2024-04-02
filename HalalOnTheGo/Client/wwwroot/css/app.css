@@ -2,15 +2,34 @@
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #DDD0C8;
 }
 
 h1:focus {
     outline: none;
 }
 
-a, .btn-link {
-    color: #0071c1;
+.navbar-dark {
+    background-color:#DDD0C8;
 }
+.navbar-brand {
+    background-color:#DDD0C8;
+    justify-content:center;
+}
+
+.navbar-nav {
+    background-color:#DDD0C8;
+  position:fixed;
+  justify-content:center
+}
+
+.nav-link {
+    background-color:#DDD0C8;
+    text-align: center;
+ 
+}
+
+
 
 .btn-primary {
     color: #fff;
@@ -42,6 +61,8 @@ a, .btn-link {
     transition: transform .2s;
     
 }
+
+
 
 .media-img-big {
     max-height: 500px;
@@ -198,6 +219,9 @@ a, .btn-link {
     font-style:italic;
     font-size:xx-small;
     text-align:center;
+}
+.typeahead {
+    background-color:red;
 }
 
 #blazor-error-ui .dismiss {
