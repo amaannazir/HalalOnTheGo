@@ -1,0 +1,130 @@
+﻿@page "/"
+@inject ICategoryService CategoryService
+@inject IProductService ProductService
+@inject ISyncLocalStorageService LocalStorage
+
+ <AuthorizeView>
+    <NotAuthorized>
+        <h1>Welcome to HalalOnTheGo - A halal butcher provider for our students &#129385; &#127869;</h1>
+       
+        <br>
+        <p class = "italic-needs-signin">Hey there, hungry student! Ready to satisfy those taste buds? Dive into our meat selection tailored just for               you! Sign in quick with your university credentials - we've streamlined it for busy bees like you! Click the sign-up or sign-in option in              the navbar to purchase and let's get this culinary adventure started! &#129474;</p>
+        <br>
+        <p>You are still free to browse our vast selection of premium halal butchered meats, with prices that are aimed directly at students only. <i><b>( Why not start at our best sellers below! :)</b> )</i> </p>
+        
+    </NotAuthorized>
+    <Authorized>
+        <h1>Welcome back to HalalOnTheGo, @LocalStorage.GetItemAsString("email")!</h1>
+          <h2>A halal butcher provider for our students &#129385; &#127869;</h2>
+    <p>We hope you find what you need. &#127881;</p> 
+    <p>Don't forget to check out this weeks best sellers below!</p>
+    </Authorized>
+</AuthorizeView>
+
+<h3 class="home-title">Our Best Sellers</h3>
+
+<body>
+    <div class="grid-container"> 
+        <div class="homepage-item">
+      @foreach (var product in ProductService.Products.Take(1))
+    {
+        
+            <div class="media-img-wrapper">
+                <a href="/product/@product.Id">
+                   <img class="media-img" src="@product.Image" alt="@product.Title" />
+                    </a>
+            </div>
+           <div class="media-body">
+               <a href="/product/@product.Id">
+                   <h4 class="mb-0"> @product.Title</h4>
+               </a>
+          <br>
+                <h5 class="price">
+                   @GetPrice(product)
+                </h5>
+            </div>
+        
+    }
+    </div>
+    </div>
+    <div class="homepage-item">
+        @foreach (var product in ProductService.Products.TakeLast(1))
+    {
+            <div class="media-img-wrapper">
+               <a href="/product/@product.Id">
+                   <img class="media-img" src="@product.Image" alt="@product.Title" />
+                    </a>
+            </div>
+           <div class="media-body">
+               <a href="/product/@product.Id">
+                   <h4 class="mb-0"> @product.Title</h4>
+               </a>
+          <br>
+                <h5 class="price">
+                   @GetPrice(product)
+                </h5>
+            </div>
+        
+    }
+
+    </div>
+
+    <div class="homepage-item">
+        @foreach (var product in ProductService.Products.Skip(1).Take(1))
+    {
+          <div class="media-img-wrapper">
+              <a href="/product/@product.Id">
+                   <img class="media-img" alt="@product.Title" src="@product.Image"  />
+                    </a>
+            </div>
+           <div class="media-body">
+               <a href="/product/@product.Id">
+                   <h4 class="mb-0"> @product.Title</h4>
+               </a>
+          <br>
+                <h5 class="price">
+                   @GetPrice(product)
+                </h5>
+            </div>
+     
+    }
+
+    </div>
+
+    <h3 class="home-title"> What We Provide</h3>
+
+<p class="text">
+  HalalOnTheGo caters to Sheffield students, providing convenient access to Halal meats. Whether you're well-versed in Halal cuisine or new to it, we've got you covered. Enjoy quality Halal options on the go!
+</p>
+<p>
+ <i>Our diverse menu offers a wide range of options, from traditional favorites to modern twists, all prepared with the highest standards of Halal integrity.</i>
+</p>
+<div class="center">
+<a href="/about"><i>FIND OUT MORE!</i></a>
+</div>
+
+    <h4 class="home-title">Our HALAL Promise</h4>
+<p class="text">
+    At HalalOnTheGo, we take pride in our Halal certification process, ensuring the utmost respect for Islamic dietary laws and principles.<a href="/halalcertification">Our certification</a> involves rigorous adherence to Halal meat guidelines. 
+</p>
+     
+</body>
+
+@code{
+    private string GetPrice(Product product)
+    {
+        var variants = product.Variants;
+        if (variants.Count == 0) // if the product has no variants
+        {
+            return string.Empty;
+        }
+        else if (variants.Count == 1) // if there is one vairant display default price
+        {
+            return $"£{variants[0].Price}";
+
+        }
+        decimal minPrice = variants.Min( v => v.Price); //if there is more than two display lowest price
+        return $"Starting at £{minPrice}";
+
+    }
+}
