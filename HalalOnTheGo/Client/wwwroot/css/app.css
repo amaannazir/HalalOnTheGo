@@ -16,7 +16,7 @@ a, .btn-link {
 
 .btn-primary {
     color: #fff;
-    background-color: dodgerblue;
+    background-color: #323232;
     border: none;
     border-radius: 5px;
     font-size: 18px;
@@ -60,6 +60,12 @@ a, .btn-link {
     margin: auto;
 }
 
+.productdetailsDescription {
+    text-align:center; 
+    border-bottom:dotted;
+    border-top:dotted;
+}
+
 .media-img-big {
     max-height: 400px;
     max-width: 400px;
@@ -85,6 +91,11 @@ a, .btn-link {
     justify-content: center;
     vertical-align: central;
     padding-top: 140px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border-radius: 10px;
 }
 
 .original-price {
@@ -284,12 +295,18 @@ a, .btn-link {
 }
 
 form {
-    max-width: 500px;
+    max-width: 377px;
     margin: 0 auto;
     font-family: Arial, sans-serif;
-    background-color: royalblue;
+    background-color: #323232;
     padding: 20px;
     border-radius: 10px;
+}
+
+.selectQuantityTextProdPage {
+
+    text-align:center;
+    color:white;
 }
 
 label {
@@ -451,7 +468,6 @@ td:last-child, th:last-child {
 }
 
 
-
 .cart-image-wrapper {
     width: 150px;
     text-align: center;
@@ -501,7 +517,7 @@ td:last-child, th:last-child {
 
 .btn-product {
     color: #fff;
-    background-color: dodgerblue;
+    background-color: #323232;
     border: none;
     border-radius: 5px;
     font-size: 18px;
@@ -697,5 +713,10 @@ footer {
 
     .media-img-big {
         max-width: 300px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        border-radius:10px;
     }
 }
