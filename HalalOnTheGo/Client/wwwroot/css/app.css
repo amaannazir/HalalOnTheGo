@@ -109,7 +109,8 @@ a, .btn-link {
 }
 
 .logo {
-    border-radius: 12px;
+    border-radius: 15px;
+
 }
 
 #blazor-error-ui {
@@ -536,6 +537,20 @@ td:last-child, th:last-child {
     font-weight: bold;
     margin-left: 40px;
     text-decoration: underline;
+}
+
+.knifebutcher {
+    border-radius: 12px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.bbccred {
+    text-align:center;
+    padding-top:15px;
+   
 }
 
 .calendar {
