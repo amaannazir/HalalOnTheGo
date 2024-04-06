@@ -9,8 +9,10 @@
 <br />
 <br />
 
-<h3>Login</h3>
-<p>Please login with your student email address below, which you previously signed up with. (This usually follows the "@@university.ac.uk" convenction)</p>
+<h3 class="home-title">Login</h3>
+<br />
+<p class="text"><b><i>Please login with your student email address and password you registered with your sheffield university (This usually follows the "@@university.ac.uk" convenction)</i></b></p>
+
 <EditForm Model="user" OnSubmit="HandleLogin">
     <div class="form-group">
         <label for="email">Email</label>
@@ -19,9 +21,10 @@
     <div class="form-group">
         <label for="password">Password</label>
         <InputText id="password" @bind-Value="user.Password" type="password" class="form-control"></InputText>
+        <button class="loginbtn" type ="submit"><b>Login</b></button>
     </div>
 
-    <button type ="submit" class="btn btn-primary">Login</button>
+    
 </EditForm>
 
 @code {

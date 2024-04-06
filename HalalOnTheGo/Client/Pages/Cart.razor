@@ -9,11 +9,18 @@
 
 @if (!orderPlaced) //If the order is not placed, display the shopping cart with all the meat items, prices, ability to change quantity and delete item and order button!
 {
-    <h3>Shopping Cart</h3>
+    <h3 class="home-title">Shopping Cart</h3>
+    <br />
+    <br />
 
     @if(cartItems == null || cartItems.Count <= 0) //Display message to user if cart is empty
 {
-    <span>Aw, your cart looks a bit lonely! How about we fill it with some fantastic finds? Time to get your dinner table ready! </span>
+    <p class="text"><b>Aw, your cart looks a bit lonely! How about we fill it with some fantastic finds? Time to get your dinner table ready! </b></p>
+    <br>
+    <p class="viewchickentextcart"><b><u><a href="/chicken">View our chicken</a></u></b></p>
+    <img class="chickencartpic" src="/Images/chickenbreast1KG.png" >
+
+      
 }
 else
 { //- Calculates the sum of all the cart items and displays the price with the sum of items!
@@ -24,11 +31,11 @@ else
            <div class="item-container">
                <div class="item-image-wrapper"><img src="@item.Image" class="item-image"/></div>
                <div class="item-name">
-                   <h5><a href="/product/@item.ProductId">@item.ProductTitle</a></h5>
-                   <span>@item.EditionName</span><br />
+                   <h4><a href="/product/@item.ProductId">@item.ProductTitle</a></h4>
+                   <span><b>@item.EditionName</b></span><br />
                    <button class="btn-delete" @onclick="@(() => DeleteItem(item))">Delete</button>
                    <EditForm Model="item">
-                       <InputNumber id="quantity" @bind-Value="item.Quantity" class="form-control" style="width: 70px"></InputNumber>
+                       <InputNumber id="quantity" @bind-Value="item.Quantity" class="form-control" style="width:                    70px"></InputNumber>
                    </EditForm>
                </div>
                <div class="item-price">£@(item.Price * item.Quantity)</div>
@@ -38,7 +45,7 @@ else
            Total (@cartItems.Count): £@cartItems.Sum(item => item.Price * item.Quantity)
        </div>
       <div style="text-align: center; margin-top: 10px;">
-          <button class="btn btn-primary btn-lg" @onclick="PlaceOrder">Get My Meat!</button>
+          <button class="getmymeatbtn" @onclick="PlaceOrder">Get My Meat!</button>
       </div>
     </div>
     }
