@@ -31,7 +31,7 @@ else
            <div class="item-container">
                <div class="item-image-wrapper"><img src="@item.Image" class="item-image"/></div>
                <div class="item-name">
-                   <h4><a href="/product/@item.ProductId">@item.ProductTitle</a></h4>
+                   <h4 class="cart-items-heading"><a class="ProductTitleLink" href="/product/@item.ProductId">@item.ProductTitle</a></h4>
                    <span><b>@item.EditionName</b></span><br />
                    <button class="btn-delete" @onclick="@(() => DeleteItem(item))">Delete</button>
                    <EditForm Model="item">
