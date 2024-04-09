@@ -64,16 +64,9 @@
     <br />
 
      <div class="form-group">
-        <label for="shuID">Sheffield University Student ID (EXAMPLE: C000****): </label>
+        <label for="ShuEmail">Confirm University Email: ( Your receipt will be sent to your university email :) )</label>
        <br /> 
-       <input id="shuID" type="text" @bind="ShuId" />
-    </div>
-    <br />
-
-     <div class="form-group">
-        <label for="EmailAddress">Email Address (For receiving of a full receipt) </label>
-       <br /> 
-       <input id="shuID" type="text" @bind="Email" />
+       <input id="shuID" type="email" @bind="ShuEmail" />
     </div>
     <br />
 
@@ -89,8 +82,8 @@
     private string Postcode { get; set; }
     private string AddressLine1 { get; set; }
     private string HouseNumberOrName { get; set; }
-    private int ShuId { get; set; }
-    private string Email { get; set; }
+    private string ShuEmail { get; set; }
+  
 
     private void SubmitForm()
     {
