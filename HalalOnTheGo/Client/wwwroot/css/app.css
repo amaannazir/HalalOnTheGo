@@ -133,12 +133,17 @@ a, .btn-link {
 }
 
 .original-price {
-    text-decoration: line-through;
-    color: red;
+    color: white;
+    font-size: large;
+    background-color: red;
+    text-align: center;
 }
 
+.was {
+    text-decoration:none; 
+}
 .price {
-    color:grey;
+    color: grey;
     padding: 25px;
     justify-content: center;
     font-weight: bold;
@@ -587,24 +592,8 @@ td:last-child, th:last-child {
     font-size: large;
 }
 
-.counter {
-    width: 110px;
-    margin: auto;
-    font-family: Arial, sans-serif;
-    background-color: lightgray;
-    padding: 20px;
-    border-radius: 12px;
-}
 
 
-.product-counter {
-    width: 110px;
-    font-family: Arial, sans-serif;
-    background-color: lightgray;
-    padding: 10px;
-    border-radius: 12px;
-    margin-bottom: 40px;
-}
 
 .btn-product {
     color: #fff;
