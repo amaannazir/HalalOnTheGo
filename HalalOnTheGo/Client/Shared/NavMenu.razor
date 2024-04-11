@@ -44,6 +44,7 @@
              <NavLink class="nav-link" href="login">
                 <span class="oi oi-account-login" aria-hidden="true"></span> Login
             </NavLink>
+            
             </NotAuthorized>
             <Authorized>
              
@@ -52,6 +53,16 @@
                 </a>
             </Authorized>
             </AuthorizeView>
+
+             </li>
+             <li class="nav-item">
+                 <AuthorizeView>
+                     <NotAuthorized>
+                          <NavLink class="nav-link" href="signup">
+                <span class="oi oi-person" aria-hidden="true"></span> Sign Up
+            </NavLink>
+                     </NotAuthorized>
+                 </AuthorizeView>
              </li>
             </ul>
         </div>

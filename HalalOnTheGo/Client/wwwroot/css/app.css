@@ -139,8 +139,14 @@ a, .btn-link {
     text-align: center;
 }
 
+.signuptextonform {
+
+    text-align:center;
+   color:white;
+}
+
 .was {
-    text-decoration:none; 
+    text-decoration: none;
 }
 .price {
     color: grey;

@@ -1,0 +1,85 @@
+﻿@page "/signup"
+@inject ILocalStorageService LocalStorage
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthStateProvider
+@inject IToastService ToastService
+
+<h3 class="home-title">Sign Up</h3>
+<br />
+
+<p class="text"><b><i>Thank you for choosing HalalOnTheGo to satisfy your cravings for top-quality halal butchered meats. We're absolutely delighted to have you onboard!</i></b></p>
+
+<h4 class="mb-0">Please fill in the details below:</h4>
+
+<EditForm Model="user" OnSubmit="SubmitForm"> 
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" class="form-control" id="firstName" @bind="user.FirstName"/>
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" class="form-control" id="lastName" @bind="user.LastName"/>
+    </div>
+    <div class="form-group">
+        <label for="studentEmail">Student Email</label>
+        <input type="email" class="form-control" id="studentEmail" @bind="user.StudentEmail"/>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password" @bind="user.Password"/>
+    </div>
+    <div class="form-group">
+        <label for="password">Confirm Password</label>
+        <input type="password" class="form-control" id="password" @bind="user.ConfirmPassword"/>
+    </div>
+    <div class="form-group">
+        <label for="university">University</label>
+        <select class="form-control" id="university" @bind="user.University">
+            <option value="">Select Your University</option>
+            <option value="UoS">University of Sheffield (UoS)</option>
+            <option value="Shu">Sheffield Hallam University (Shu)</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary" @onsubmit="SubmitForm">Sign Up</button>
+</EditForm>
+
+@code {
+
+    private User user = new User();
+
+
+    private void SubmitForm()
+    {
+
+
+        if (string.IsNullOrEmpty(user.FirstName) || string.IsNullOrEmpty(user.LastName) || string.IsNullOrEmpty(user.StudentEmail) || string.IsNullOrEmpty(user.Password) || string.IsNullOrEmpty(user.University))
+        {
+            ToastService.ShowError("Please Fill In All Fields.");
+            return;
+        }
+
+        if (!user.StudentEmail.EndsWith(".ac.uk"))
+        {
+            // If email is not valid university email show toast error.
+            ToastService.ShowError("Please enter a valid University Email address.");
+            return;
+        }
+        if (user.Password != user.ConfirmPassword)
+        {
+            ToastService.ShowError("Passwords do not match. Please Re-try!");
+            return;
+        }
+
+        if (user.Password.Length != 8)
+        {
+            ToastService.ShowError("Password Needs to be 8 Characters Long.");
+            return;
+        }
+
+     
+            
+                 NavigationManager.NavigateTo("/login");
+            
+ 
+    }
+}
