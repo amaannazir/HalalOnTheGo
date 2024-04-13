@@ -63,12 +63,6 @@
 
     <br />
 
-     <div class="form-group">
-        <label for="ShuEmail">Confirm University Email: ( Your receipt will be sent to your university email :) )</label>
-       <br /> 
-       <input id="shuID" type="email" @bind="ShuEmail" />
-    </div>
-    <br />
 
     <button class="btnsubmit" @onclick="SubmitForm">Submit</button>
 </div>
@@ -82,7 +76,6 @@
     private string Postcode { get; set; }
     private string AddressLine1 { get; set; }
     private string HouseNumberOrName { get; set; }
-    private string ShuEmail { get; set; }
   
 
     private void SubmitForm()
