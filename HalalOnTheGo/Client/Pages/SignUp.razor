@@ -70,14 +70,15 @@
             return;
         }
 
-        if (user.Password.Length != 8)
+        if (user.Password.Length < 8)
         {
             ToastService.ShowError("Password Needs to be 8 Characters Long.");
             return;
         }
 
-     
-            
+
+        ToastService.ShowSuccess("HalalOnTheGo account successfully created!");
+
                  NavigationManager.NavigateTo("/login");
             
  
