@@ -7,9 +7,11 @@
 <div class = "media"> 
     <h2 class="mb-0">@product.Title</h2>
     <div class = "media-img-big-wrapper mr-2">
+      
         <img class = "media-img-big" src="@product.Image" alt="@product.Title" />
     </div>
     <div class = "media-body">
+        <br />
         <br />
         <br />
         <br />
@@ -35,9 +37,9 @@
                 <br />
                 <h6 class = "original-price "> <b style="color:white;"> WAS </b> <b> £@GetSelectedVariant().OriginalPrice</b></h6>
             }
-            <h4 class = "price">
+            <h4 class = "productpageprice">
                 <br />
-                £@GetSelectedVariant().Price
+                <b>£@GetSelectedVariant().Price</b>
         </h4>
         }
         <EditForm Model="cartItem">

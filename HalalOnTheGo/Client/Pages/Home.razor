@@ -10,7 +10,7 @@
         <br>
         <p class ="heyhungrystudent"><b><i>Hey there, hungry student! Ready to satisfy those taste buds? Dive into our meat selection tailored just for you! Login quick with your university credentials - we've streamlined it for busy bees like you! Click the <b><a href="/login">login</a></b> option in the nav menu above to purchase and let's get this culinary adventure started! &#129474;</i></b></p>
         <br>
-        <p>You are still free to browse our vast selection of premium halal butchered meats, with prices that are aimed directly at students only. <i><b>( Why not start at our best sellers below! :)</b> )</i> </p>
+        <p class="text">You are still free to browse our vast selection of premium halal butchered meats, with prices that are aimed directly at students only. <i><b>( Why not start at our best sellers below! :)</b> )</i> </p>
         
     </NotAuthorized>
     <Authorized>
@@ -31,7 +31,7 @@
     {
         
             <div class="media-img-wrapper">
-                <a href="/product/@product.Id">
+                <a href="/product/@product.Id" style="text-decoration:none;">
                     <h4 class="mb-0"> @product.Title</h4>
                    <img class="media-img" src="@product.Image" alt="@product.Title" />
                     </a>
@@ -54,7 +54,7 @@
         @foreach (var product in ProductService.Products.TakeLast(1))
     {
             <div class="media-img-wrapper">
-               <a href="/product/@product.Id">
+               <a href="/product/@product.Id" style="text-decoration:none;">
                     <h4 class="mb-0"> @product.Title</h4>
                    <img class="media-img" src="@product.Image" alt="@product.Title" />
                     </a>
@@ -79,7 +79,7 @@
         @foreach (var product in ProductService.Products.Skip(1).Take(1))
     {
           <div class="media-img-wrapper">
-              <a href="/product/@product.Id">
+              <a href="/product/@product.Id" style="text-decoration:none;">
                    <h4 class="mb-0"> @product.Title</h4>
                    <img class="media-img" alt="@product.Title" src="@product.Image"  />
                     </a>

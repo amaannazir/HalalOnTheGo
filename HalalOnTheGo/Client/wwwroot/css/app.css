@@ -63,7 +63,6 @@ a, .btn-link {
 }
 .smalltextwelcome {
  font-size:x-small;
- font-style:
 }
 .heyhungrystudent{
     text-align:center;
@@ -72,9 +71,6 @@ a, .btn-link {
     outline: 1px solid red;
 }
 
-.loginbtn {
-  background-color:lightgray;
-}
 
 .validation-message {
     color: red;
@@ -152,17 +148,23 @@ a, .btn-link {
     color: grey;
     padding: 25px;
     justify-content: center;
-    font-weight: bold;
+    font-weight:bolder;
+    
+}
+
+.productpageprice {
+    font-weight:bolder;
+    font-family:Garamond;
+    font-size:38px;
 }
 
 .mb-0 {
     padding: 25px;
     justify-content: center;
     padding-top: 10px;
-    color:black;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    text-align:center;
- 
+    color: black;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
 }
 
 .logo {
@@ -274,6 +276,7 @@ a, .btn-link {
     padding: 5px;
     justify-content: center;
     font-size: 18px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .center {
@@ -370,7 +373,8 @@ a, .btn-link {
 
 .btnsubmit {
 
-
+    background-color:lawngreen;
+    justify-content:center;
 }
 
 .ProductTitleLink {
@@ -418,17 +422,18 @@ textarea {
     }
 
 button[type="submit"] {
-    background-color: red;
-    color: #fff;
+    background-color: #9e7852; 
+    color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
+    
 }
 
     button[type="submit"]:hover {
-        background-color: darkred;
+        background-color: #212529;
     }
 
 

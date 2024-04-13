@@ -1,5 +1,8 @@
 ﻿@inject NavigationManager NavigationManager
-
+@inject ILocalStorageService LocalStorage
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthStateProvider
+@inject IToastService ToastService
 @page "/deliverydetails"
 
 
@@ -40,6 +43,11 @@
     </div>
 
     <br />
+    
+    <div class="form-group">
+        <label for="city">City</label>
+     <br />   <input id="city" type="text" @bind="City" />
+    </div>
 
     <div class="form-group">
         <label for="postcode">Postcode</label>
@@ -62,9 +70,9 @@
     </div>
 
     <br />
+    
 
-
-    <button class="btnsubmit" @onclick="SubmitForm">Submit</button>
+    <button type="submit" style= "margin-bottom:10px; display:block; margin:auto;" @onclick="SubmitForm">Submit Order</button>
 </div>
 
 
@@ -76,10 +84,17 @@
     private string Postcode { get; set; }
     private string AddressLine1 { get; set; }
     private string HouseNumberOrName { get; set; }
-  
+    private string City { get; set; }
+
 
     private void SubmitForm()
     {
+        if (string.IsNullOrEmpty(Title) || string.IsNullOrEmpty(RecipientFirstName) || string.IsNullOrEmpty(RecipientLastName) || string.IsNullOrEmpty(Postcode) || string.IsNullOrEmpty(AddressLine1) || string.IsNullOrEmpty(HouseNumberOrName) || string.IsNullOrEmpty(City))
+        {
+             ToastService.ShowError("Please Fill In All Fields.");
+            return;
+        }
+
         NavigationManager.NavigateTo("/ordersuccess");
        
     }
