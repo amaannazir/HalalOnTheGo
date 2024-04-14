@@ -172,6 +172,40 @@ a, .btn-link {
 
 }
 
+.weaccept {
+
+    color:#FFFFFF8C;
+    text-align:center;
+    font-size:xx-small;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+    
+}
+
+.applepayGpaypic {
+    border-radius: 15px;
+    display: block;
+    margin: auto;
+    width: 150px;
+    height: auto;
+}
+
+.stripelogo {
+    border-radius: 15px;
+    float: right;
+    justify-content: right;
+    width: 150px;
+    height: auto;
+}
+
+.meatonhome {
+    border-radius: 15px;
+   height:auto;
+   width:400px;
+   display:block;
+   margin:auto;
+}
+
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
