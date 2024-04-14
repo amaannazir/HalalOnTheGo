@@ -198,12 +198,19 @@ a, .btn-link {
     height: auto;
 }
 
+.footerlogo {
+
+    border-radius:20px;
+    float:left;
+    width:60px;
+}
+
 .meatonhome {
     border-radius: 15px;
-   height:auto;
-   width:400px;
-   display:block;
-   margin:auto;
+    height: auto;
+    width: 400px;
+    display: block;
+    margin: auto;
 }
 
 #blazor-error-ui {
