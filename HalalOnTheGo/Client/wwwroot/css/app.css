@@ -203,14 +203,46 @@ a, .btn-link {
     border-radius:20px;
     float:left;
     width:60px;
+    margin-top:-70px;
 }
 
-.meatonhome {
-    border-radius: 15px;
-    height: auto;
-    width: 400px;
-    display: block;
-    margin: auto;
+.footertext {
+    color: #FFFFFF8C;
+    font-size: xx-small;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding-left:45px;
+}
+.copyrightfootertext {
+
+    font-family:Verdana;
+    font-size:10px;
+}
+.unisupport {
+    padding-left: 200px;
+    margin-top: -70px;
+}
+
+.footeruos {
+    border-radius:15px;
+    width:90px;
+}
+
+.footershu {
+        border-radius:15px;
+       width: 75px;
+    }
+
+    .meatonhome {
+        border-radius: 15px;
+        height: auto;
+        width: 400px;
+        display: block;
+        margin: auto;
+    }
+
+.meatonhome:hover {
+
+   transform:scale(1,1);
 }
 
 #blazor-error-ui {
@@ -239,7 +271,7 @@ a, .btn-link {
 
 .item-image-wrapper {
     width: 150px;
-    text-align: center;
+    text-align: center; 
 }
 
 .item-image {
