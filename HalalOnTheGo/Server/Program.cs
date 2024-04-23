@@ -1,3 +1,6 @@
+using Firebase.Auth.Providers;
+using Firebase.Auth.Repository;
+using Firebase.Auth.Requests;
 using HalalOnTheGo.Server.Data;
 using HalalOnTheGo.Server.Services.CategoryService;
 using HalalOnTheGo.Server.Services.PaymentService;
@@ -6,7 +9,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 ConfigurationManager configuration = builder.Configuration;
-
+const string API_KEY = "AIzaSyDQuwWtHUopqBWH43mVcMhiujRsgWFxiG";
+//FirebaseAuthProvider firebaseAuthProvider = new FirebaseAuthProvider(new FirebaseConfig(API_KEY));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
@@ -25,7 +29,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseWebAssemblyDebugging();
 }
-else
+else 
 {
     app.UseExceptionHandler("/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
