@@ -9,7 +9,7 @@
 <h3 class="home-title">Delivery Options</h3> 
 
 <br />
-<p class="heyhungrystudent"><b><i>Congratulations on choosing the best halal meat for your plate! You're just one address entry away from diving into deliciousness! Let's complete this journey together, shall we? &#x2661;</i></b></p>
+<p class="heyhungrystudent"><b><i>Congratulations on choosing the best halal meat for your plate! You're just one address entry away from diving into deliciousness! Let's complete this journey together, shall we?&#x2661;</i></b></p>
 <br />
 
 <br />
@@ -17,9 +17,9 @@
 
 <br />
 
-<div class="form-container" style="justify-content:center">
+<div class="form-container" style="justify-content:center;">
     <div class="form-group">
-        <label for="title">Title</label>
+        <label for="title" class="titleform">Title</label>
        <br /> <select id="title" @bind="Title" >
         <option value="title">Select Title</option>
         <option value="title">Mr</option>
@@ -31,33 +31,33 @@
     <br />
 
     <div class="form-group">
-        <label for="firstName">Recipient First Name</label>
+        <label for="firstName" class="firstnameform">Recipient First Name</label>
      <br />   <input id="firstName" type="text" @bind="RecipientFirstName" />
     </div>
 
     <br /> 
 
     <div class="form-group">
-        <label for="lastName">Recipient Last Name</label>
+        <label for="lastName" class="lastnameform">Recipient Last Name</label>
    <br />     <input id="lastName" type="text" @bind="RecipientLastName" />
     </div>
 
     <br />
     
     <div class="form-group">
-        <label for="city">City</label>
+        <label for="city" class="cityform">City</label>
      <br />   <input id="city" type="text" @bind="City" />
     </div>
 
     <div class="form-group">
-        <label for="postcode">Postcode</label>
+        <label for="postcode" class="postcodeform">Postcode</label>
      <br />   <input id="postcode" type="text" @bind="Postcode" />
     </div>
 
     <br />
 
     <div class="form-group">
-        <label for="addressLine1">First Line of Address</label>
+        <label for="addressLine1" class="addressline1form">First Line of Address</label>
        <br /> 
        <input id="addressLine1" type="text" @bind="AddressLine1" />
     </div>
@@ -65,7 +65,7 @@
     <br />
 
     <div class="form-group">
-        <label for="houseNumber">House Number or Name</label>
+        <label for="houseNumber" class="housenumberform">House Number or Name</label>
        <br /> <input id="houseNumber" type="text" @bind="HouseNumberOrName" />
     </div>
 

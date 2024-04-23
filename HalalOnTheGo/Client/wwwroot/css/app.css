@@ -199,10 +199,10 @@ a, .btn-link {
 }
 
 .footerlogo {
-
+    margin-left:10px;
     border-radius:20px;
     float:left;
-    width:60px;
+    width:80px;
     margin-top:-70px;
 }
 
@@ -624,8 +624,52 @@ td:last-child, th:last-child {
 }
 
 .form-container {
+    /*   background-color:#323232;
+    padding:40px;
+    border-radius:100px;
+    width:800px;
+    height:auto;
+    justify-content:center;
+    margin-left:auto;
+    margin-right:auto;
+    display:block;*/
 
-    background-color:#323232;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    background-color: #323232;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+.firstnameform {
+    font-size:20px;
+}
+
+.titleform {
+    font-size:20px;
+}
+
+.lastnameform {
+
+    font-size:20px;
+}
+
+.cityform {
+    font-size:20px;
+}
+
+.postcodeform {
+    font-size: 20px;
+}
+
+.addressline1form {
+    font-size: 20px;
+}
+
+.housenumberform {
+    font-size: 20px;
 }
 
 .btn-submit {
@@ -635,7 +679,7 @@ td:last-child, th:last-child {
     padding: 10px 20px;
     cursor: pointer;
     box-shadow: 0px 1px 3px #666;
-   padding-top:50px;
+    padding-top: 50px;
 }
 
 .two-grid-container {

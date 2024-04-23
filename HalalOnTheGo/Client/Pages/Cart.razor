@@ -4,13 +4,13 @@
 
 @if (!orderPlaced) //If the order is not placed, display the shopping cart with all the meat items, prices, ability to change quantity and delete item and order button!
 {
-    <h3 class="home-title">Shopping Cart</h3>
+    <h3 class="home-title">Your Shopping Cart &nbsp;<span class="oi oi-cart"></span></h3>
     <br />
     <br />
 
     @if(cartItems == null || cartItems.Count <= 0) //Display message to user if cart is empty
 {
-    <p class="text"><b>Aw, your cart looks a bit lonely! How about we fill it with some fantastic finds? Time to get your dinner table ready! </b></p>
+    <p class="text"><b>Aw, your cart looks a bit lonely! How about we fill it with some fantastic finds? Time to get your dinner table ready! &#128513</b></p>
     <br>
     <p class="viewchickentextcart"><b><u><a href="/chicken">View our chicken</a></u></b></p>
     <img class="chickencartpic" src="/Images/chickenbreast1KG.png" >
